@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_cube/flutter_cube.dart';
 import 'package:lottie/lottie.dart';
+import 'package:elemental/model1Page.dart';
 
 class ElementPage extends StatefulWidget {
   final int atomicnum;
@@ -25,10 +26,24 @@ class _ElementPageState extends State<ElementPage> {
       number = widget.atomicnum.toInt();
     });
 
-    var mass = data[widget.atomicnum]['atomicMass'].toString();
+    var mass = data[widget.atomicnum]['caliber'].toString();
     mass = mass.substring(0, 3);
     var responsive = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => Model1Page()));
+          },
+          child: Center(
+            child: Text(
+              "Tap here",
+              style: GoogleFonts.cabin(
+                fontSize: 10,
+                color: Colors.white,
+              ),
+            ),
+          )),
       backgroundColor: Color.fromRGBO(16, 16, 16, 1),
       body: responsive.width > 760
           ? ListView(
@@ -50,7 +65,7 @@ class _ElementPageState extends State<ElementPage> {
                       ),
                       Text(
                         data[widget.atomicnum]['name'],
-                        style: GoogleFonts.nunito(
+                        style: GoogleFonts.cabin(
                           fontSize: 40,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -101,7 +116,7 @@ class _ElementPageState extends State<ElementPage> {
                                         children: [
                                           Text(
                                             'More Info',
-                                            style: GoogleFonts.nunito(
+                                            style: GoogleFonts.cabin(
                                               fontSize: 40,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black87,
@@ -114,7 +129,7 @@ class _ElementPageState extends State<ElementPage> {
                                         height: 300,
                                         child: Center(
                                           child:
-                                              Lottie.asset('assets/info.json'),
+                                              Lottie.asset('assets/wow.json'),
                                         ),
                                       ),
                                       Row(
@@ -123,11 +138,11 @@ class _ElementPageState extends State<ElementPage> {
                                             width: 500,
                                             child: Text(
                                               data[widget.atomicnum]['name'] +
-                                                  ' belongs to the group of ' +
+                                                  ' belongs to the category of ' +
                                                   data[widget.atomicnum]
                                                       ['groupBlock'] +
-                                                  ' elements.',
-                                              style: GoogleFonts.nunito(
+                                                  ' weapons.',
+                                              style: GoogleFonts.cabin(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.green,
@@ -142,18 +157,18 @@ class _ElementPageState extends State<ElementPage> {
                                       Row(
                                         children: [
                                           Text(
-                                            'Atomic Radius : ',
-                                            style: GoogleFonts.nunito(
+                                            //declaration
+                                            'Caliber : ',
+                                            style: GoogleFonts.cabin(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black54,
                                             ),
                                           ),
                                           Text(
-                                            data[widget.atomicnum]
-                                                    ['atomicRadius'] +
-                                                ' pm',
-                                            style: GoogleFonts.nunito(
+                                            //body
+                                            data[widget.atomicnum]['caliber'],
+                                            style: GoogleFonts.cabin(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
@@ -167,18 +182,19 @@ class _ElementPageState extends State<ElementPage> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              'Boiling Point : ',
-                                              style: GoogleFonts.nunito(
+                                              //declaration
+                                              'Rate of fire : ',
+                                              style: GoogleFonts.cabin(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black54,
                                               ),
                                             ),
                                             Text(
+                                              //body
                                               data[widget.atomicnum]
-                                                      ['boilingPoint'] +
-                                                  ' K',
-                                              style: GoogleFonts.nunito(
+                                                  ['rateOfFire'],
+                                              style: GoogleFonts.cabin(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black,
@@ -190,18 +206,18 @@ class _ElementPageState extends State<ElementPage> {
                                       Row(
                                         children: [
                                           Text(
-                                            'Melting Point : ',
-                                            style: GoogleFonts.nunito(
+                                            //declaration
+                                            'Mass : ',
+                                            style: GoogleFonts.cabin(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black54,
                                             ),
                                           ),
                                           Text(
-                                            data[widget.atomicnum]
-                                                    ['meltingPoint'] +
-                                                ' K',
-                                            style: GoogleFonts.nunito(
+                                            //body
+                                            data[widget.atomicnum]['heavyMass'],
+                                            style: GoogleFonts.cabin(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
@@ -215,17 +231,19 @@ class _ElementPageState extends State<ElementPage> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              'Electronic config : ',
-                                              style: GoogleFonts.nunito(
+                                              //declaration
+                                              'Barrel Length : ',
+                                              style: GoogleFonts.cabin(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black54,
                                               ),
                                             ),
                                             Text(
+                                              //body
                                               data[widget.atomicnum]
-                                                  ['electronicConfiguration'],
-                                              style: GoogleFonts.nunito(
+                                                  ['barrelLength'],
+                                              style: GoogleFonts.cabin(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black,
@@ -237,8 +255,8 @@ class _ElementPageState extends State<ElementPage> {
                                       Row(
                                         children: [
                                           Text(
-                                            'Ionisation Energy : ',
-                                            style: GoogleFonts.nunito(
+                                            'Muzzle Velocity : ',
+                                            style: GoogleFonts.cabin(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black54,
@@ -246,9 +264,8 @@ class _ElementPageState extends State<ElementPage> {
                                           ),
                                           Text(
                                             data[widget.atomicnum]
-                                                    ['ionizationEnergy'] +
-                                                ' joules',
-                                            style: GoogleFonts.nunito(
+                                                ['muzzelVelocity'],
+                                            style: GoogleFonts.cabin(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
@@ -262,22 +279,24 @@ class _ElementPageState extends State<ElementPage> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              'State of matter : ',
-                                              style: GoogleFonts.nunito(
+                                              //declaration
+                                              'Length : ',
+                                              style: GoogleFonts.cabin(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black54,
                                               ),
                                             ),
                                             Text(
+                                              //body
                                               data[widget.atomicnum]
-                                                          ['standardState']
+                                                          ['fullLength']
                                                       .substring(0, 1)
                                                       .toUpperCase() +
                                                   data[widget.atomicnum]
-                                                          ['standardState']
+                                                          ['fullLength']
                                                       .substring(1),
-                                              style: GoogleFonts.nunito(
+                                              style: GoogleFonts.cabin(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black,
@@ -289,18 +308,19 @@ class _ElementPageState extends State<ElementPage> {
                                       Row(
                                         children: [
                                           Text(
-                                            'Van der Waals radius : ',
-                                            style: GoogleFonts.nunito(
+                                            //declaration
+                                            'Effective Range : ',
+                                            style: GoogleFonts.cabin(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black54,
                                             ),
                                           ),
                                           Text(
+                                            //body
                                             data[widget.atomicnum]
-                                                    ['vanDelWaalsRadius'] +
-                                                ' pm',
-                                            style: GoogleFonts.nunito(
+                                                ['effectiveRange'],
+                                            style: GoogleFonts.cabin(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
@@ -340,7 +360,7 @@ class _ElementPageState extends State<ElementPage> {
                       ),
                       Text(
                         data[widget.atomicnum]['name'],
-                        style: GoogleFonts.nunito(
+                        style: GoogleFonts.cabin(
                           fontSize: 40,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -411,7 +431,7 @@ class _ElementPageState extends State<ElementPage> {
                                   width: 300,
                                   height: 300,
                                   child: Center(
-                                    child: Lottie.asset('assets/info.json'),
+                                    child: Lottie.asset('assets/wow.json'),
                                   ),
                                 ),
                                 Row(
@@ -421,11 +441,11 @@ class _ElementPageState extends State<ElementPage> {
                                           1.2,
                                       child: Text(
                                         data[widget.atomicnum]['name'] +
-                                            ' belongs to the group of ' +
+                                            ' belongs to the category of ' +
                                             data[widget.atomicnum]
                                                 ['groupBlock'] +
-                                            ' elements.',
-                                        style: GoogleFonts.nunito(
+                                            ' weapons.',
+                                        style: GoogleFonts.cabin(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.green,
@@ -440,18 +460,17 @@ class _ElementPageState extends State<ElementPage> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Atomic Radius : ',
-                                      style: GoogleFonts.nunito(
-                                        fontSize: 20,
+                                      'Feed Device : ',
+                                      style: GoogleFonts.cabin(
+                                        fontSize: 12,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black54,
                                       ),
                                     ),
                                     Text(
-                                      data[widget.atomicnum]['atomicRadius'] +
-                                          ' pm',
-                                      style: GoogleFonts.nunito(
-                                        fontSize: 20,
+                                      data[widget.atomicnum]['feedDevice'],
+                                      style: GoogleFonts.cabin(
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                       ),
@@ -464,64 +483,18 @@ class _ElementPageState extends State<ElementPage> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        'Boiling Point : ',
-                                        style: GoogleFonts.nunito(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black54,
-                                        ),
-                                      ),
-                                      Text(
-                                        data[widget.atomicnum]['boilingPoint'] +
-                                            ' K',
-                                        style: GoogleFonts.nunito(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Melting Point : ',
-                                      style: GoogleFonts.nunito(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black54,
-                                      ),
-                                    ),
-                                    Text(
-                                      data[widget.atomicnum]['meltingPoint'] +
-                                          ' K',
-                                      style: GoogleFonts.nunito(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 20),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        'Electronic config : ',
-                                        style: GoogleFonts.nunito(
-                                          fontSize: 20,
+                                        'Sighting System : ',
+                                        style: GoogleFonts.cabin(
+                                          fontSize: 12,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black54,
                                         ),
                                       ),
                                       Text(
                                         data[widget.atomicnum]
-                                            ['electronicConfiguration'],
-                                        style: GoogleFonts.nunito(
-                                          fontSize: 16,
+                                            ['sightingSystem'],
+                                        style: GoogleFonts.cabin(
+                                          fontSize: 12,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
                                         ),
@@ -532,19 +505,17 @@ class _ElementPageState extends State<ElementPage> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Ionisation Energy : ',
-                                      style: GoogleFonts.nunito(
-                                        fontSize: 20,
+                                      'Mass : ',
+                                      style: GoogleFonts.cabin(
+                                        fontSize: 15,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black54,
                                       ),
                                     ),
                                     Text(
-                                      data[widget.atomicnum]
-                                              ['ionizationEnergy'] +
-                                          ' joules',
-                                      style: GoogleFonts.nunito(
-                                        fontSize: 20,
+                                      data[widget.atomicnum]['heavyMass'],
+                                      style: GoogleFonts.cabin(
+                                        fontSize: 15,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                       ),
@@ -557,22 +528,17 @@ class _ElementPageState extends State<ElementPage> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        'State of matter : ',
-                                        style: GoogleFonts.nunito(
-                                          fontSize: 20,
+                                        'Barrel Length : ',
+                                        style: GoogleFonts.cabin(
+                                          fontSize: 15,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black54,
                                         ),
                                       ),
                                       Text(
-                                        data[widget.atomicnum]['standardState']
-                                                .substring(0, 1)
-                                                .toUpperCase() +
-                                            data[widget.atomicnum]
-                                                    ['standardState']
-                                                .substring(1),
-                                        style: GoogleFonts.nunito(
-                                          fontSize: 20,
+                                        data[widget.atomicnum]['barrelLength'],
+                                        style: GoogleFonts.cabin(
+                                          fontSize: 15,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
                                         ),
@@ -583,19 +549,65 @@ class _ElementPageState extends State<ElementPage> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Van der Waals radius : ',
-                                      style: GoogleFonts.nunito(
-                                        fontSize: 20,
+                                      'Muzzle Velocity : ',
+                                      style: GoogleFonts.cabin(
+                                        fontSize: 15,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black54,
                                       ),
                                     ),
                                     Text(
-                                      data[widget.atomicnum]
-                                              ['vanDelWaalsRadius'] +
-                                          ' pm',
-                                      style: GoogleFonts.nunito(
-                                        fontSize: 20,
+                                      data[widget.atomicnum]['muzzelVelocity'],
+                                      style: GoogleFonts.cabin(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 20),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'Full Length : ',
+                                        style: GoogleFonts.cabin(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black54,
+                                        ),
+                                      ),
+                                      Text(
+                                        data[widget.atomicnum]['fullLength']
+                                                .substring(0, 1)
+                                                .toUpperCase() +
+                                            data[widget.atomicnum]['fullLength']
+                                                .substring(1),
+                                        style: GoogleFonts.cabin(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Effective Range : ',
+                                      style: GoogleFonts.cabin(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54,
+                                      ),
+                                    ),
+                                    Text(
+                                      data[widget.atomicnum]['effectiveRange'],
+                                      style: GoogleFonts.cabin(
+                                        fontSize: 15,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                       ),
@@ -639,13 +651,13 @@ class Sideinfo extends StatelessWidget {
             begin: Alignment.bottomLeft,
             end: Alignment.topRight,
             colors: [
-              Color.fromRGBO(74, 194, 154, 1),
-              Color.fromRGBO(189, 255, 243, 1)
+              Color.fromARGB(255, 39, 197, 203),
+              Color.fromARGB(255, 19, 104, 194)
             ],
           ),
           borderRadius: BorderRadius.only(
-            topRight: Radius.circular(30),
-            bottomRight: Radius.circular(30),
+            topRight: Radius.circular(20),
+            bottomRight: Radius.circular(20),
           ),
         ),
         child: Padding(
@@ -672,8 +684,8 @@ class Sideinfo extends StatelessWidget {
                             child: Center(
                               child: Text(
                                 data[atomicnum]['symbol'],
-                                style: GoogleFonts.nunito(
-                                  fontSize: 30,
+                                style: GoogleFonts.cabin(
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w800,
                                   color: Colors.black,
                                 ),
@@ -683,8 +695,8 @@ class Sideinfo extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Atomic Symbol',
-                        style: GoogleFonts.nunito(
+                        'Name',
+                        style: GoogleFonts.cabin(
                           fontSize: 12,
                           fontWeight: FontWeight.w800,
                           color: Colors.black54,
@@ -711,8 +723,8 @@ class Sideinfo extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                mass,
-                                style: GoogleFonts.nunito(
+                                data[atomicnum]['heavyMass'],
+                                style: GoogleFonts.cabin(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black,
@@ -723,8 +735,8 @@ class Sideinfo extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Atomic Mass',
-                        style: GoogleFonts.nunito(
+                        'Mass',
+                        style: GoogleFonts.cabin(
                           fontSize: 12,
                           fontWeight: FontWeight.w800,
                           color: Colors.black54,
@@ -752,9 +764,9 @@ class Sideinfo extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                data[atomicnum]['electronegativity'],
-                                style: GoogleFonts.nunito(
-                                  fontSize: 20,
+                                data[atomicnum]['origin'],
+                                style: GoogleFonts.cabin(
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black,
                                 ),
@@ -764,9 +776,9 @@ class Sideinfo extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Electronegativity',
-                        style: GoogleFonts.nunito(
-                          fontSize: 12,
+                        'Country of Origin',
+                        style: GoogleFonts.cabin(
+                          fontSize: 10,
                           fontWeight: FontWeight.w800,
                           color: Colors.black54,
                         ),
@@ -792,8 +804,8 @@ class Sideinfo extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                data[atomicnum]['yearDiscovered'],
-                                style: GoogleFonts.nunito(
+                                data[atomicnum]['yearInvented'],
+                                style: GoogleFonts.cabin(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black,
@@ -804,8 +816,8 @@ class Sideinfo extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Year Discovered',
-                        style: GoogleFonts.nunito(
+                        'Year Invented',
+                        style: GoogleFonts.cabin(
                           fontSize: 12,
                           fontWeight: FontWeight.w800,
                           color: Colors.black54,
@@ -839,17 +851,7 @@ class _ViewerState extends State<Viewer> {
     String symbol;
 
     setState(() {
-      if (d[number]['symbol'] == 'Ar' ||
-          d[number]['symbol'] == 'Ne' ||
-          d[number]['symbol'] == 'He' ||
-          d[number]['symbol'] == 'Kr' ||
-          d[number]['symbol'] == 'Xe' ||
-          d[number]['symbol'] == 'Rn' ||
-          d[number]['symbol'] == 'Og') {
-        symbol = 'H';
-      } else {
-        symbol = d[number]['symbol'].toString();
-      }
+      symbol = d[number]['symbol'].toString();
     });
     cube = Object(fileName: "assets/Models/$symbol.obj");
     cube.rotation.setValues(-30, -120, 40);
@@ -876,7 +878,7 @@ class _ViewerState extends State<Viewer> {
               SizedBox(height: 20),
               Cube(
                 onSceneCreated: (Scene scene) {
-                  scene.world.add(cube);
+                  scene.world.add(cube); //insert 3d model of weapon
                   scene.camera.zoom = 10;
                 },
               ),
@@ -887,12 +889,12 @@ class _ViewerState extends State<Viewer> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(25),
                         ),
                         child: Center(
                           child: Text(
                             'Tap and drag to interact',
-                            style: GoogleFonts.nunito(
+                            style: GoogleFonts.cabin(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
                               color: Colors.black,

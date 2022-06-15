@@ -78,7 +78,7 @@ class _SearchPageState extends State<SearchPage> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                hintText: 'Search element ..',
+                                hintText: 'Search weapon ..',
                                 hintStyle: GoogleFonts.nunito(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w800,
@@ -724,8 +724,8 @@ class _SearchPageState extends State<SearchPage> {
               ),
             )
           : SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
-            child: Column(
+              physics: ClampingScrollPhysics(),
+              child: Column(
                 children: [
                   Row(
                     children: [
@@ -733,8 +733,8 @@ class _SearchPageState extends State<SearchPage> {
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height / 5,
                         child: Padding(
-                          padding:
-                              const EdgeInsets.only(top: 80, left: 20, right: 30),
+                          padding: const EdgeInsets.only(
+                              top: 80, left: 20, right: 30),
                           child: TextField(
                             onChanged: (_filter) {
                               if (_filter.length == 0) {
@@ -760,7 +760,7 @@ class _SearchPageState extends State<SearchPage> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              hintText: 'Search element ..',
+                              hintText: 'Search weapon ..',
                               hintStyle: GoogleFonts.nunito(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w800,
@@ -797,48 +797,41 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 ],
               ),
-          ),
+            ),
     );
   }
 
   void _getNames(String name) async {
     int check = 0;
-    if (name.length == 0) {
+    Period period = new Period();
+    var data = period.period;
+    setState(() {
+      res = [];
+      for (int i = 0; i < 7; i++) {
+        var temp = data[i]["name"].toString();
+        names.add(temp);
+      }
+    });
+    for (int i = 0; i < 7; i++) {
+      String ele = '';
+      ele = names[i];
+
+      if (ele.contains(name)) {
+        setState(() {
+          res.add(ele);
+          check = 1;
+        });
+      }
+    }
+    if (check == 1) {
       setState(() {
-        show = false;
+        show = true;
+        found = true;
       });
     } else {
-      Period period = new Period();
-      var data = period.period;
       setState(() {
-        res = [];
-        for (int i = 0; i < 118; i++) {
-          var temp = data[i]['name'].toString();
-          names.add(temp);
-        }
+        found = false;
       });
-      for (int i = 0; i < 118; i++) {
-        String ele = '';
-        ele = names[i];
-        ele = ele.toLowerCase();
-
-        if (ele.contains(name)) {
-          setState(() {
-            res.add(ele);
-            check = 1;
-          });
-        }
-      }
-      if (check == 1) {
-        setState(() {
-          show = true;
-          found = true;
-        });
-      } else {
-        setState(() {
-          found = false;
-        });
-      }
     }
   }
 
@@ -856,7 +849,7 @@ class _SearchPageState extends State<SearchPage> {
 
   Widget _buildlist() {
     int atnum;
-    elementno elno = elementno();
+    elementno elno = new elementno();
     var n = elno.element;
     return ListView.builder(
       key: UniqueKey(),
@@ -867,8 +860,8 @@ class _SearchPageState extends State<SearchPage> {
           child: GestureDetector(
             onTap: () {
               setState(() {
-                atnum = int.parse(n[res[index].substring(0, 1).toUpperCase() +
-                    res[index].substring(1)]);
+                atnum = int.parse(
+                    n[res[index].substring(0, 1) + res[index].substring(1)]);
                 atnum -= 1;
                 Navigator.push(
                   context,
@@ -961,7 +954,7 @@ class Search_something extends StatelessWidget {
             child: Lottie.asset('assets/search.json'),
           ),
           Text(
-            'Search something...',
+            'Search weapon...',
             textAlign: TextAlign.center,
             style: GoogleFonts.nunito(
               fontSize: 30,
